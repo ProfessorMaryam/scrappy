@@ -48,12 +48,12 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - **Validates: Requirements 1.6, 19.1, 19.2**
 
 - [ ] 3. Implement post management service
-  - [~] 3.1 Create Post entity and repository
+  - [x] 3.1 Create Post entity and repository
     - Create Post JPA entity with all fields (id, user_id, post_type, status, title, content, images array, car fields, price, created_at)
     - Create PostRepository interface with custom query methods
     - _Requirements: 3.1, 3.2, 3.3, 3.7_
 
-  - [~] 3.2 Implement image upload to Supabase Storage
+  - [ ] 3.2 Implement image upload to Supabase Storage
     - Create uploadPostImages() method
     - Validate image size (max 5MB) and format (JPEG, PNG, WebP)
     - Generate unique filenames
@@ -62,7 +62,7 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - Implement cleanup for failed uploads
     - _Requirements: 3.5, 3.6, 11.1, 11.2, 11.3, 11.4, 11.5, 11.6, 15.7, 15.8, 16.9, 28.1, 28.2, 28.4_
 
-  - [~] 3.3 Implement PostService CRUD operations
+  - [ ] 3.3 Implement PostService CRUD operations
     - Implement createPost() with validation
     - Implement updatePost() with owner verification
     - Implement deletePost() with owner verification
@@ -71,7 +71,7 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - Implement updatePostStatus() method
     - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.8, 3.9, 3.10, 10.1, 10.2, 12.1, 12.2, 12.3, 12.4_
 
-  - [~] 3.4 Create PostController REST endpoints
+  - [ ] 3.4 Create PostController REST endpoints
     - Create POST /api/posts endpoint
     - Create PUT /api/posts/{id} endpoint
     - Create DELETE /api/posts/{id} endpoint
@@ -92,11 +92,11 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - **Property 3: Post Status Invariant**
     - **Validates: Requirements 12.1, 12.2, 12.3, 12.4, 12.5**
 
-- [~] 4. Checkpoint - Ensure all tests pass
+- [ ] 4. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 5. Implement search and discovery service
-  - [~] 5.1 Create SearchService with filtering logic
+  - [ ] 5.1 Create SearchService with filtering logic
     - Implement searchPosts() using JPA Criteria API
     - Support keyword search on title and content (case-insensitive)
     - Support filters: car_make, car_model, car_year, price range, post_type
@@ -106,14 +106,14 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - Optimize query to complete within 2 seconds
     - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 4.10, 4.11, 4.12, 23.1, 23.2, 23.3, 23.4, 29.1, 29.2, 29.3, 29.4_
 
-  - [~] 5.2 Implement car data helper methods
+  - [ ] 5.2 Implement car data helper methods
     - Implement getCarMakes() method
     - Implement getCarModels(make) method
     - Implement getCarYears() method
     - Implement filterByCarCompatibility() method
     - _Requirements: 4.2, 4.3, 4.4_
 
-  - [~] 5.3 Create SearchController REST endpoints
+  - [ ] 5.3 Create SearchController REST endpoints
     - Create GET /api/posts/search endpoint with query parameters
     - Create GET /api/posts endpoint for recent posts
     - Return paginated results with total count, page number, page size
@@ -136,14 +136,14 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - **Validates: Requirements 4.1, 29.1**
 
 - [ ] 6. Implement conversation and messaging service
-  - [~] 6.1 Create Conversation and Message entities
+  - [ ] 6.1 Create Conversation and Message entities
     - Create Conversation JPA entity with post_id (nullable), buyer_id, seller_id, last_message_at, created_at
     - Create Message JPA entity with conversation_id, sender_id, message_type, body, image_url, is_read, created_at
     - Create ConversationRepository and MessageRepository
     - Add unique constraint on (post_id, buyer_id, seller_id) for conversations
     - _Requirements: 5.1, 5.2, 5.3, 5.8, 20.1, 20.2_
 
-  - [~] 6.2 Implement ConversationService
+  - [ ] 6.2 Implement ConversationService
     - Implement createOrGetConversation() ensuring uniqueness
     - Implement getUserConversations() ordered by last_message_at descending
     - Implement getConversationHistory() with pagination (50 messages per page)
@@ -151,7 +151,7 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - Implement updateLastMessageTimestamp() method
     - _Requirements: 5.1, 5.6, 5.8, 18.4, 20.1, 20.3, 20.4_
 
-  - [~] 6.3 Implement message sending with Supabase Realtime
+  - [ ] 6.3 Implement message sending with Supabase Realtime
     - Implement sendMessage() for text messages (populate body field)
     - Implement sendMessage() for image messages (populate image_url field)
     - Validate sender is participant in conversation
@@ -159,7 +159,7 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - Integrate with Supabase Realtime to broadcast messages
     - _Requirements: 5.2, 5.3, 5.4, 5.5, 5.7, 5.9_
 
-  - [~] 6.4 Create ConversationController REST endpoints
+  - [ ] 6.4 Create ConversationController REST endpoints
     - Create POST /api/conversations endpoint
     - Create GET /api/conversations endpoint
     - Create GET /api/conversations/{id}/messages endpoint
@@ -184,33 +184,33 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - **Validates: Requirements 5.2, 5.3**
 
 - [ ] 7. Implement escrow payment service with Stripe
-  - [~] 7.1 Create EscrowTransaction entity and repository
+  - [ ] 7.1 Create EscrowTransaction entity and repository
     - Create EscrowTransaction JPA entity with all fields
     - Create EscrowTransactionRepository with custom queries
     - Add index on stripe_payment_intent_id
     - _Requirements: 6.2, 6.3, 7.6, 14.10_
 
-  - [~] 7.2 Integrate Stripe SDK and configure webhooks
+  - [ ] 7.2 Integrate Stripe SDK and configure webhooks
     - Add Stripe Java SDK dependency
     - Configure Stripe API keys from environment variables
     - Implement webhook signature verification
     - _Requirements: 7.1, 7.2, 17.6, 17.7_
 
-  - [~] 7.3 Implement EscrowService core methods
+  - [ ] 7.3 Implement EscrowService core methods
     - Implement initiateEscrow() creating Stripe payment intent and transaction record atomically
     - Implement validateEscrowAmount() checking positive value and 2 decimal places
     - Implement getTransactionById() method
     - Implement getUserTransactions() for buyer and seller
     - _Requirements: 6.1, 6.2, 6.3, 6.15, 6.16, 21.1, 21.2, 21.3, 21.4, 21.5, 30.1, 30.2, 30.3, 30.4_
 
-  - [~] 7.4 Implement Stripe webhook handler
+  - [ ] 7.4 Implement Stripe webhook handler
     - Implement handleStripeWebhook() with signature verification
     - Handle payment success: keep status as on_hold, notify buyer and seller
     - Handle payment failure: notify buyer with failure reason
     - Implement idempotent processing to prevent duplicate updates
     - _Requirements: 6.4, 6.5, 7.1, 7.2, 7.3, 7.4, 7.5, 7.6_
 
-  - [~] 7.5 Implement buyer approval and dispute methods
+  - [ ] 7.5 Implement buyer approval and dispute methods
     - Implement approveBuyerRelease() with buyer verification
     - Set buyer_approved_at timestamp
     - Update status to released then completed
@@ -222,7 +222,7 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - Keep funds in Stripe escrow when disputed
     - _Requirements: 6.6, 6.7, 6.8, 6.9, 6.10, 6.11, 6.12, 6.13, 6.14, 10.3, 10.4, 12.5, 13.1, 13.2, 13.3, 13.4, 13.5, 13.6, 22.1, 22.2, 22.3, 22.4, 22.5_
 
-  - [~] 7.6 Create EscrowController REST endpoints
+  - [ ] 7.6 Create EscrowController REST endpoints
     - Create POST /api/escrow/initiate endpoint
     - Create POST /api/escrow/webhook endpoint (Stripe webhook)
     - Create PUT /api/escrow/{id}/approve endpoint
@@ -254,17 +254,17 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - **Property 10: Stripe Webhook Idempotency**
     - **Validates: Requirements 7.3, 7.6**
 
-- [~] 8. Checkpoint - Ensure all tests pass
+- [ ] 8. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 9. Implement bookmark service
-  - [~] 9.1 Create Bookmark entity and repository
+  - [ ] 9.1 Create Bookmark entity and repository
     - Create Bookmark JPA entity with user_id, post_id, created_at
     - Add unique constraint on (user_id, post_id)
     - Create BookmarkRepository
     - _Requirements: 8.2_
 
-  - [~] 9.2 Implement BookmarkService
+  - [ ] 9.2 Implement BookmarkService
     - Implement addToBookmarks() with duplicate prevention
     - Implement removeFromBookmarks() method
     - Implement getBookmarks() returning bookmarked posts
@@ -272,7 +272,7 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - Prevent users from bookmarking their own posts
     - _Requirements: 8.1, 8.2, 8.3, 8.4, 8.5_
 
-  - [~] 9.3 Create BookmarkController REST endpoints
+  - [ ] 9.3 Create BookmarkController REST endpoints
     - Create POST /api/bookmarks endpoint
     - Create DELETE /api/bookmarks/{postId} endpoint
     - Create GET /api/bookmarks endpoint
@@ -290,13 +290,13 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - **Validates: Requirements 8.2**
 
 - [ ] 10. Implement notification service
-  - [~] 10.1 Create Notification entity and repository
+  - [ ] 10.1 Create Notification entity and repository
     - Create Notification JPA entity with user_id, type, title, body, data (JSONB), is_read, created_at
     - Create NotificationRepository
     - Add indexes on user_id and is_read
     - _Requirements: 9.5, 9.6, 9.9, 14.10_
 
-  - [~] 10.2 Implement NotificationService
+  - [ ] 10.2 Implement NotificationService
     - Implement createNotification() with type, title, body, and JSONB data
     - Implement getUserNotifications() with unreadOnly filter
     - Implement markAsRead() for single notification
@@ -304,14 +304,14 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - Order notifications by created_at descending
     - _Requirements: 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7, 9.8, 9.9, 24.1, 24.2, 24.3, 24.4_
 
-  - [~] 10.3 Integrate notifications into escrow flow
+  - [ ] 10.3 Integrate notifications into escrow flow
     - Notify seller when escrow is created
     - Notify buyer and seller when payment succeeds
     - Notify seller when funds are released
     - Notify seller when dispute is raised
     - _Requirements: 9.1, 9.2, 9.3, 9.4_
 
-  - [~] 10.4 Create NotificationController REST endpoints
+  - [ ] 10.4 Create NotificationController REST endpoints
     - Create GET /api/notifications endpoint
     - Create PUT /api/notifications/{id}/read endpoint
     - Create PUT /api/notifications/read-all endpoint
@@ -325,7 +325,7 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - _Requirements: 9.5, 9.6, 9.7, 9.8_
 
 - [ ] 11. Implement security and authorization
-  - [~] 11.1 Configure Spring Security
+  - [ ] 11.1 Configure Spring Security
     - Create SecurityConfig with JWT filter
     - Configure CORS with allowed origins
     - Set session management to stateless
@@ -333,14 +333,14 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - Configure protected endpoints (require authentication)
     - _Requirements: 10.6, 10.7, 17.9_
 
-  - [~] 11.2 Implement JWT authentication filter
+  - [ ] 11.2 Implement JWT authentication filter
     - Create JwtAuthenticationFilter
     - Validate JWT token on each request
     - Extract user from token and set SecurityContext
     - Handle expired tokens with 401 Unauthorized
     - _Requirements: 17.3, 17.4, 17.5, 26.4, 26.5_
 
-  - [~] 11.3 Implement input validation
+  - [ ] 11.3 Implement input validation
     - Add Bean Validation annotations to DTOs (@NotNull, @Size, @Email, etc.)
     - Validate required fields are not null
     - Validate username uniqueness
@@ -350,14 +350,14 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - Sanitize user-generated content to prevent XSS
     - _Requirements: 15.1, 15.2, 15.3, 15.4, 15.5, 15.6, 15.9_
 
-  - [~] 11.4 Implement authorization checks
+  - [ ] 11.4 Implement authorization checks
     - Verify user owns post before update/delete
     - Verify user is buyer before approving escrow release
     - Verify user is buyer before raising dispute
     - Verify user is conversation participant before sending message
     - _Requirements: 10.1, 10.2, 10.3, 10.4, 10.5_
 
-  - [~] 11.5 Add security headers and request limits
+  - [ ] 11.5 Add security headers and request limits
     - Add X-Content-Type-Options header
     - Add X-Frame-Options header
     - Validate Content-Type headers on requests
@@ -369,7 +369,7 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - **Validates: Requirements 10.1, 10.2, 10.3, 10.4**
 
 - [ ] 12. Implement error handling and validation
-  - [~] 12.1 Create global exception handler
+  - [ ] 12.1 Create global exception handler
     - Handle InvalidCredentialsException → 401 with message
     - Handle UserAlreadyExistsException → 409 with message
     - Handle UnauthorizedException → 403 with message
@@ -379,7 +379,7 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - Handle database errors → 503 Service Unavailable
     - _Requirements: 16.1, 16.2, 16.3, 16.4, 16.5, 16.6, 16.7, 16.8, 16.9_
 
-  - [~] 12.2 Create custom exception classes
+  - [ ] 12.2 Create custom exception classes
     - Create InvalidCredentialsException
     - Create UserAlreadyExistsException
     - Create UnauthorizedException
@@ -388,7 +388,7 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - Create InvalidStateException
     - _Requirements: 16.1, 16.2, 16.3, 16.4, 16.5, 16.6_
 
-  - [~] 12.3 Implement consistent API response format
+  - [ ] 12.3 Implement consistent API response format
     - Return appropriate 2xx status codes for success
     - Return appropriate 4xx/5xx status codes for errors
     - Include descriptive error messages in error responses
@@ -404,10 +404,10 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - Test validation errors return 400
     - _Requirements: 16.1, 16.2, 16.3, 16.4, 16.5, 16.6_
 
-- [~] 13. Checkpoint - Ensure all tests pass
+- [ ] 13. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
-- [~] 14. Set up React frontend project
+- [ ] 14. Set up React frontend project
   - Create React project with TypeScript using Vite
   - Install dependencies: React Router, React Query, Tailwind CSS, Supabase client, Axios
   - Configure Tailwind CSS
@@ -416,7 +416,7 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
   - _Requirements: 25.1_
 
 - [ ] 15. Implement frontend authentication
-  - [~] 15.1 Create AuthContext for global state
+  - [ ] 15.1 Create AuthContext for global state
     - Create AuthContext with user, token, login, register, logout, isAuthenticated
     - Implement login() calling backend API
     - Implement register() calling backend API
@@ -425,14 +425,14 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - Provide isSeller and isBuyer computed properties
     - _Requirements: 1.1, 1.4, 26.1, 26.2, 26.3_
 
-  - [~] 15.2 Create authentication pages
+  - [ ] 15.2 Create authentication pages
     - Create LoginPage with email and password fields
     - Create RegisterPage with username, password, full_name, role fields
     - Display error messages for invalid credentials or duplicate username
     - Redirect to dashboard after successful login/register
     - _Requirements: 1.1, 1.3, 1.4, 16.1, 16.2_
 
-  - [~] 15.3 Create ProtectedRoute component
+  - [ ] 15.3 Create ProtectedRoute component
     - Check if user is authenticated
     - Redirect to login if not authenticated
     - Render protected content if authenticated
@@ -445,7 +445,7 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - _Requirements: 26.1, 26.3_
 
 - [ ] 16. Implement frontend post management
-  - [~] 16.1 Create PostForm component
+  - [ ] 16.1 Create PostForm component
     - Create form with title, content, car_make, car_model, car_year, part_name, post_type, price fields
     - Implement multiple image upload with preview
     - Validate image size (max 5MB) and format before upload
@@ -454,14 +454,14 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - Display success message after post creation
     - _Requirements: 3.1, 3.2, 3.5, 3.6, 11.1, 11.2, 11.3, 11.4, 11.5, 11.6_
 
-  - [~] 16.2 Create PostList and PostCard components
+  - [ ] 16.2 Create PostList and PostCard components
     - Create PostCard displaying post title, price, car info, images
     - Create PostList rendering array of PostCard components
     - Display post status badge (active, sold, archived)
     - Add click handler to navigate to post details
     - _Requirements: 3.1, 3.3, 23.1_
 
-  - [~] 16.3 Create PostDetailPage
+  - [ ] 16.3 Create PostDetailPage
     - Display full post details with all images
     - Show seller information
     - Add "Contact Seller" button for buyers
@@ -469,7 +469,7 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - Display post status
     - _Requirements: 3.1, 10.1, 10.2, 23.2_
 
-  - [~] 16.4 Create MyPostsPage for sellers
+  - [ ] 16.4 Create MyPostsPage for sellers
     - Fetch and display user's posts
     - Show post status for each post
     - Add edit and delete actions
@@ -482,7 +482,7 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - _Requirements: 3.1, 3.5, 3.6_
 
 - [ ] 17. Implement frontend search and discovery
-  - [~] 17.1 Create SearchBar component
+  - [ ] 17.1 Create SearchBar component
     - Create search input for keyword
     - Create filter dropdowns for car_make, car_model, car_year, post_type
     - Create price range inputs (min and max)
@@ -490,7 +490,7 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - Call GET /api/posts/search with query parameters
     - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9_
 
-  - [~] 17.2 Create SearchResultsPage
+  - [ ] 17.2 Create SearchResultsPage
     - Display SearchBar component
     - Display search results using PostList component
     - Implement pagination controls
@@ -498,7 +498,7 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - Show "No results found" message when appropriate
     - _Requirements: 4.11, 4.12, 25.4_
 
-  - [~] 17.3 Create HomePage with recent posts
+  - [ ] 17.3 Create HomePage with recent posts
     - Fetch and display recent posts
     - Add link to search page
     - Display featured or popular posts
@@ -511,7 +511,7 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - _Requirements: 4.1, 4.2, 4.12_
 
 - [ ] 18. Implement frontend real-time chat
-  - [~] 18.1 Create ConversationWindow component
+  - [ ] 18.1 Create ConversationWindow component
     - Display conversation history with message bubbles
     - Show sender name and timestamp for each message
     - Display text messages in body field
@@ -520,7 +520,7 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - Mark messages as read when viewed
     - _Requirements: 5.2, 5.3, 5.6_
 
-  - [~] 18.2 Implement Supabase Realtime integration
+  - [ ] 18.2 Implement Supabase Realtime integration
     - Connect to Supabase Realtime on conversation open
     - Subscribe to conversation channel
     - Listen for new message events
@@ -529,7 +529,7 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - Fetch missed messages on reconnection
     - _Requirements: 5.4, 18.1, 18.2, 18.3_
 
-  - [~] 18.3 Create message input component
+  - [ ] 18.3 Create message input component
     - Create text input for message body
     - Create image upload button for image messages
     - Call POST /api/messages to send text message
@@ -537,7 +537,7 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - Disable send button while sending
     - _Requirements: 5.2, 5.3_
 
-  - [~] 18.4 Create ConversationListPage
+  - [ ] 18.4 Create ConversationListPage
     - Fetch and display user's conversations
     - Show last message and timestamp for each conversation
     - Order by last_message_at descending
@@ -545,7 +545,7 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - Show unread indicator if messages are unread
     - _Requirements: 5.6, 20.3_
 
-  - [~] 18.5 Implement "Contact Seller" flow
+  - [ ] 18.5 Implement "Contact Seller" flow
     - Add "Contact Seller" button on PostDetailPage
     - Call POST /api/conversations to create or get conversation
     - Navigate to ConversationWindow
@@ -558,7 +558,7 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - _Requirements: 5.2, 5.3_
 
 - [ ] 19. Implement frontend escrow payment
-  - [~] 19.1 Create EscrowPanel component
+  - [ ] 19.1 Create EscrowPanel component
     - Display transaction status (on_hold, released, disputed, completed)
     - Show amount and post details
     - Add "Approve Release" button for buyer (when status is on_hold)
@@ -567,7 +567,7 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - Display dispute_reason if status is disputed
     - _Requirements: 6.2, 6.6, 6.7, 6.8, 6.12, 6.13_
 
-  - [~] 19.2 Create StripePaymentModal component
+  - [ ] 19.2 Create StripePaymentModal component
     - Integrate Stripe Elements for payment form
     - Call POST /api/escrow/initiate to create payment intent
     - Use Stripe client secret to complete payment
@@ -575,27 +575,27 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - Handle payment errors gracefully
     - _Requirements: 6.1, 6.4, 6.5, 16.7_
 
-  - [~] 19.3 Implement "Initiate Escrow" flow
+  - [ ] 19.3 Implement "Initiate Escrow" flow
     - Add "Buy with Escrow" button in chat or post detail
     - Open StripePaymentModal with agreed amount
     - Create escrow transaction on successful payment
     - Display escrow status in conversation
     - _Requirements: 6.1, 6.2, 6.3_
 
-  - [~] 19.4 Implement buyer approval flow
+  - [ ] 19.4 Implement buyer approval flow
     - Call PUT /api/escrow/{id}/approve when buyer clicks "Approve Release"
     - Update UI to show released/completed status
     - Display success message
     - _Requirements: 6.6, 6.7, 6.8, 6.9, 6.10, 6.11_
 
-  - [~] 19.5 Implement dispute flow
+  - [ ] 19.5 Implement dispute flow
     - Show dispute reason input when buyer clicks "Raise Dispute"
     - Call PUT /api/escrow/{id}/dispute with reason
     - Update UI to show disputed status
     - Display dispute reason
     - _Requirements: 6.12, 6.13, 6.14_
 
-  - [~] 19.6 Create TransactionHistoryPage
+  - [ ] 19.6 Create TransactionHistoryPage
     - Fetch and display user's transactions (as buyer or seller)
     - Show transaction status, amount, post details
     - Order by created_at descending
@@ -608,24 +608,24 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - Test raise dispute updates status
     - _Requirements: 6.1, 6.6, 6.12_
 
-- [~] 20. Checkpoint - Ensure all tests pass
+- [ ] 20. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 21. Implement frontend bookmarks and notifications
-  - [~] 21.1 Create bookmark functionality
+  - [ ] 21.1 Create bookmark functionality
     - Add bookmark icon to PostCard and PostDetailPage
     - Call POST /api/bookmarks to add bookmark
     - Call DELETE /api/bookmarks/{postId} to remove bookmark
     - Update icon state based on bookmark status
     - _Requirements: 8.1, 8.3_
 
-  - [~] 21.2 Create BookmarksPage
+  - [ ] 21.2 Create BookmarksPage
     - Fetch and display user's bookmarked posts
     - Use PostList component to display bookmarks
     - Add remove bookmark action
     - _Requirements: 8.3, 8.4_
 
-  - [~] 21.3 Create NotificationBell component
+  - [ ] 21.3 Create NotificationBell component
     - Display notification icon in header
     - Show unread count badge
     - Open dropdown with recent notifications on click
@@ -633,7 +633,7 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - Mark notification as read on click
     - _Requirements: 9.6, 9.7, 24.2, 24.3_
 
-  - [~] 21.4 Create NotificationsPage
+  - [ ] 21.4 Create NotificationsPage
     - Fetch and display all user notifications
     - Show notification type, title, body, timestamp
     - Highlight unread notifications
@@ -647,14 +647,14 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - _Requirements: 8.1, 8.3_
 
 - [ ] 22. Implement responsive design and accessibility
-  - [~] 22.1 Make all pages responsive
+  - [ ] 22.1 Make all pages responsive
     - Use Tailwind responsive classes for mobile, tablet, desktop
     - Test on different screen sizes
     - Ensure navigation works on mobile
     - Make forms usable on mobile devices
     - _Requirements: Design requirement for responsive web access_
 
-  - [~] 22.2 Add accessibility features
+  - [ ] 22.2 Add accessibility features
     - Add proper ARIA labels to interactive elements
     - Ensure keyboard navigation works
     - Add alt text to images
@@ -662,7 +662,7 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - Add focus indicators
     - _Requirements: Accessibility compliance_
 
-  - [~] 22.3 Optimize image loading
+  - [ ] 22.3 Optimize image loading
     - Implement lazy loading for images
     - Add loading placeholders
     - Use responsive image sizes
@@ -717,19 +717,19 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - _Requirements: 1.1, 1.2, 1.4, 1.6, 10.7, 19.1_
 
 - [ ] 24. Performance optimization and monitoring
-  - [~] 24.1 Optimize database queries
+  - [ ] 24.1 Optimize database queries
     - Verify all indexes are created
     - Test search query performance (must be < 2 seconds)
     - Optimize N+1 query problems with eager loading
     - _Requirements: 4.10, 14.1-14.9_
 
-  - [~] 24.2 Configure connection pooling
+  - [ ] 24.2 Configure connection pooling
     - Set HikariCP maximum pool size to 20
     - Set minimum idle connections to 5
     - Configure connection timeout values
     - _Requirements: 14.10_
 
-  - [~] 24.3 Implement frontend performance optimizations
+  - [ ] 24.3 Implement frontend performance optimizations
     - Use React.memo for expensive components
     - Implement code splitting with React.lazy
     - Optimize bundle size
@@ -743,40 +743,40 @@ This implementation plan breaks down the ScrapBH marketplace into discrete codin
     - _Requirements: 4.10, 18.1_
 
 - [ ] 25. Deployment preparation
-  - [~] 25.1 Create production configuration
+  - [ ] 25.1 Create production configuration
     - Set up production environment variables
     - Configure CORS for production domain
     - Set up Stripe production keys
     - Configure Supabase production instance
     - _Requirements: 17.9_
 
-  - [~] 25.2 Create Docker configuration
+  - [ ] 25.2 Create Docker configuration
     - Create Dockerfile for Spring Boot backend
     - Create Dockerfile for React frontend
     - Create docker-compose.yml for local development
     - _Requirements: Deployment preparation_
 
-  - [~] 25.3 Set up database migrations
+  - [ ] 25.3 Set up database migrations
     - Create Flyway or Liquibase migration scripts
     - Test migrations on clean database
     - Document migration process
     - _Requirements: 27.1, 27.4_
 
-  - [~] 25.4 Create deployment documentation
+  - [ ] 25.4 Create deployment documentation
     - Document environment variables
     - Document deployment steps
     - Document database setup
     - Document Stripe webhook configuration
     - _Requirements: Deployment preparation_
 
-  - [~] 25.5 Set up health check endpoints
+  - [ ] 25.5 Set up health check endpoints
     - Create GET /api/health endpoint
     - Check database connectivity
     - Check Supabase connectivity
     - Check Stripe connectivity
     - _Requirements: 16.8_
 
-- [~] 26. Final checkpoint - Ensure all tests pass
+- [ ] 26. Final checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
 ## Notes
